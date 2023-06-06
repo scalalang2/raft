@@ -2,21 +2,14 @@ syntax = "proto3";
 
 package raft;
 
-enum TermState {
-    FOLLOWER = 0;
-    CANDIDATE = 1;
-    LEADER = 2;
-}
-
-enum LogEntryType {
-  LOG_ENTRY_COMMAND = 0;
-  LOG_ENTRY_NOOP = 1;
+enum ConsensusState {
+  DEAD = 0;
+  FOLLOWER = 1;
+  CANDIDATE = 2;
+  LEADER = 3;
 }
 
 message LogEntry {
-  uint64 index = 1;
-  uint64 term = 2;
-  LogEntryType type = 3;
-  bytes data = 4;
-  bytes extensions = 5;
+  uint64 term = 1;
+  bytes data = 2;
 }
